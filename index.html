@@ -270,28 +270,23 @@
         let pressTimer;
 
         ///////for phone
-        // touchstart event: Start the timer when touch starts
-        button.addEventListener('touchstart', function(e) {
-            // Prevent default to avoid triggering other touch behaviors
-            e.preventDefault();
-            
-            // Start a timer to detect long press (e.g., 500ms)
-            pressTimer = setTimeout(() => {
-                longPressAction();
-            }, 500);
-            selfLove.play()
-        }, false);
+        let touchTimer;
 
-        // touchend or touchcancel event: Clear the timer when touch ends or is cancelled
-        button.addEventListener('touchend', function() {
-            clearTimeout(pressTimer); // Clear the timer if touch ends before the 500ms
-            selfLove.pause()
-            selfLove.currentTime = 0
-        }, false);
+function handleTouchStart() {
+    touchTimer = setTimeout(() => {
+        console.log('Touch and hold detected!');
+        selfLove.play()
+    }, 500); // Adjust the delay as needed
+}
 
-        button.addEventListener('touchcancel', function() {
-            clearTimeout(pressTimer); // Clear the timer if touch is canceled
-        }, false);
+function handleTouchEnd() {
+    selfLove.pause()
+    selfLove.currentTime = 0
+    clearTimeout(touchTimer);
+}
+
+document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchend', handleTouchEnd);
 
 
         /////////for mouse
