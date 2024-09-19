@@ -267,29 +267,7 @@
     <Script>
         const spidie = document.getElementById("spidie")
         const selfLove = document.getElementById("selfLove")
-        let pressTimer;
 
-        ///////for phone
-        let touchTimer;
-
-function handleTouchStart() {
-    touchTimer = setTimeout(() => {
-        console.log('Touch and hold detected!');
-        selfLove.play()
-    }, 500); // Adjust the delay as needed
-}
-
-function handleTouchEnd() {
-    selfLove.pause()
-    selfLove.currentTime = 0
-    clearTimeout(touchTimer);
-}
-
-document.addEventListener('touchstart', handleTouchStart);
-document.addEventListener('touchend', handleTouchEnd);
-
-
-        /////////for mouse
         spidie.addEventListener("mouseover", () => {
             selfLove.play()
         })
